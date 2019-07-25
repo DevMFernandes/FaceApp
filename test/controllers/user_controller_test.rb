@@ -25,11 +25,4 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should redirect when logging in" do
-  #   sign_in @user
-  #   assert_redirected_to root_url
-  # end
-
-
-
 end
