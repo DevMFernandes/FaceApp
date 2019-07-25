@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserControllerTest < ActionDispatch::IntegrationTest
- # include Devise::Test::ControllerHelpers
+ include Devise::Test::IntegrationHelpers
 
   def setup
     @user = users(:michael)
@@ -16,17 +16,20 @@ class UserControllerTest < ActionDispatch::IntegrationTest
   test "should redirect user page when not logged in" do
     get user_path(@user)
     assert_redirected_to new_user_session_url
+    #hello
   end
 
-  # test "should get to user page when logged in" do
+  test "should get to user page when logged in" do
+    sign_in @user
+    get user_path(@user)
+    assert_response :success
+  end
+
+  # test "should redirect when logging in" do
   #   sign_in @user
-  #   get user_path(@user)
-  #   assert_response :success
+  #   assert_redirected_to root_url
   # end
 
-  # test "should get index" do
-  #   get user_index_url
-  #   assert_response :success
-  # end
+
 
 end
