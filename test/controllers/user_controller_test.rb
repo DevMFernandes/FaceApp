@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UserControllerTest < ActionDispatch::IntegrationTest
+ # include Devise::Test::ControllerHelpers
 
   def setup
     @user = users(:michael)
@@ -17,15 +18,9 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
-  # test "should redirect edit when logged in as wrong user" do
-  #   log_in_as(@other_user)
-  #   get edit_user_path(@user)
-  #   assert flash.empty?
-  #   assert_redirected_to root_url
-  # end
-
-  # test "should get show" do
-  #   get user_show_url
+  # test "should get to user page when logged in" do
+  #   sign_in @user
+  #   get user_path(@user)
   #   assert_response :success
   # end
 
