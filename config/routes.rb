@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
   resources :users, only: [:show, :index]
+  resources :posts
 end
