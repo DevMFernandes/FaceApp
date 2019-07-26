@@ -1,4 +1,6 @@
 <%= form_with(model: post, local: true) do |form| %>
+  <%= form.label :body %> <br>
+  <%= form.text_field :body %> <br> <br>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
