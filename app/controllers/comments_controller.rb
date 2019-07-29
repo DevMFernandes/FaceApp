@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
-  #before_action :set_post
+  before_action :set_post
 
   def create
-    @post = Post.find(params[:id])
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
@@ -12,21 +11,17 @@ class CommentsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @comment = Comment.find(params[:id])
-    #@post = Post.find(params[:post][:id])
     @comment.destroy
     flash[:success] = "Comment deleted"
-    redirect_to :root
+    redirect_to @post
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find(params[:post_id])
     end
 
     def comment_params

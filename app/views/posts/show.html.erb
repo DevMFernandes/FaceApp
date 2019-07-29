@@ -7,7 +7,7 @@
 <br>
 <h1>Comments</h1>
 
-<%= form_with(model: @comment, url:'/posts/'+@post.id.to_s+'/comments', local: true) do |form| %>
+<%= form_with(model: @comment, url: post_comments_path(@post), local: true) do |form| %>
     <%= form.label :body %> <br>
     <%= form.text_field :body %> <br> <br>
 
@@ -22,8 +22,7 @@
   <% unless comment.id.nil? %>
     <p>ID: <%= comment.id %></p>
     <p><%= comment.body %></p>
-    <!-- <p><%= link_to 'Destroy', '/posts/'+@post.id.to_s+'/comments/'+comment.id.to_s, method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
-    <p><%= link_to 'Destroy', [@post, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <p><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
     <hr>
   <% end %>
 <% end %>
