@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  post 'like', to: 'likes#create'
+
+  resources :likes, only: [:create, :destroy]
 
 end

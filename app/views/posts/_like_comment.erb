@@ -1,4 +1,4 @@
-<%= form_for(comment.likes.build, url: like_path) do |f| %>
+<%= form_for(comment.likes.build, url: likes_path) do |f| %>
   <%= hidden_field_tag :comment_id, comment.id %>
   <%= f.submit "Like" %>
 <% end %>

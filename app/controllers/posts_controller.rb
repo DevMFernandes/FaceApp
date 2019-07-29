@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    @post_likes = Like.like_posts
   end
 
   # GET /posts/1

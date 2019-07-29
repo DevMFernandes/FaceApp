@@ -14,7 +14,7 @@ class LikesController < ApplicationController
 
     # If anything goes wrong
     else
-      redirect_to :root, notice: 'the if statement failed'
+      redirect_to posts_path, notice: 'the if statement failed'
     end
 
     @like.user_id = current_user.id

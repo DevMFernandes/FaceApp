@@ -1,4 +1,8 @@
-<%= form_for(post.likes.build, url: like_path) do |f| %>
+<%= form_for(post.likes.build, url: likes_path) do |f| %>
   <%= hidden_field_tag :post_id, post.id %>
   <%= f.submit "Like" %>
 <% end %>
+
+<%# if @post_likes.include? post.id  %>
+  <%# <p>I liked this!</p> %>
+<%# end %>
