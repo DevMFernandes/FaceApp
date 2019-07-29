@@ -18,8 +18,9 @@
     </div>
   <% end %>
 
-<% @post.comments.each do |p| %>
-    <p><%= p.body %></p>
+<% @post.comments.each do |comment| %>
+    <p><%= comment.body %></p>
+    <p><%= link_to 'Destroy', '/posts/'+@post.id.to_s+'/comments/'+comment.id.to_s, method: :delete, data: { confirm: 'Are you sure?' } %></p>
     <hr>
 <% end %>
 
