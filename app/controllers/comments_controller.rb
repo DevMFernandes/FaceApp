@@ -13,9 +13,13 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    flash[:success] = "Comment deleted"
-    redirect_to @post
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      flash[:success] = "Comment deleted"
+      redirect_to @post
+    else
+      redirect_to @post, notice: 'Not your comment!'
+    end
   end
 
   private
@@ -23,6 +27,8 @@ class CommentsController < ApplicationController
     def set_post
       @post = Post.find(params[:post_id])
     end
+
+
 
     def comment_params
       params.require(:comment).permit(:body)

@@ -22,7 +22,9 @@
   <% unless comment.id.nil? %>
     <p>ID: <%= comment.id %></p>
     <p><%= comment.body %></p>
+    <% if comment.user_id == current_user.id %>
     <p><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <% end %>
     <hr>
   <% end %>
 <% end %>

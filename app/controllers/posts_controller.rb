@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -49,15 +50,19 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
-    flash[:success] = "Post deleted"
-    redirect_to posts_url
+      @post.destroy
+      flash[:success] = "Post deleted"
+      redirect_to posts_path
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def correct_user
+      redirect_to posts_path, notice: 'Not your post!' if @post.user_id != current_user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
