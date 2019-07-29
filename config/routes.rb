@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'likes/like_post'
-  
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
   resources :users, only: [:show, :index]
@@ -11,5 +10,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  post 'like_post', to: 'likes#like_post'
+  post 'like_comment', to: 'likes#like_comment'
 
 end

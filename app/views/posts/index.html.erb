@@ -4,7 +4,8 @@
 
     <% @posts.each do |post| %>
         <p><%= post.body %></p>
-        <%= link_to 'Like', controller: 'likes', method: :post, action: 'like_post' %>
+
+        <%= render 'like', post: post %>
         <%= link_to 'Show', post %>
         <% if post.user_id == current_user.id %>
           <%= link_to 'Edit', edit_post_path(post) %>
