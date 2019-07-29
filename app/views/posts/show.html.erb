@@ -7,9 +7,11 @@
 <br>
 <h1>Comments</h1>
 
-<%= form_with(model: @comment, local: true) do |form| %>
+<%= form_with(model: @comment, url:'/posts/'+@post.id.to_s+'/comments', local: true) do |form| %>
     <%= form.label :body %> <br>
     <%= form.text_field :body %> <br> <br>
+
+    <%= hidden_field_tag :id, @post.id %>
 
     <div class="actions">
       <%= form.submit %>
