@@ -1,11 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Posts</h1>
 
     <% @posts.each do |post| %>
         <p><%= post.body %></p>
 
         <%= render 'like_post', post: post %>
+        <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
         <%= link_to 'Show', post %>
         <% if post.user_id == current_user.id %>
           <%= link_to 'Edit', edit_post_path(post) %>
