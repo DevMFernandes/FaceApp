@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
   before_action :already_liked?, only: [:create]
   before_action :find_like, only: [:destroy]
+  before_action :not_liked?, only: [:destroy]
 
   def create
 
@@ -36,13 +37,36 @@ class LikesController < ApplicationController
   private
 
     def already_liked?
-      if Like.where(user_id: current_user.id, likeable_type: "Post", likeable_id: params[:post_id]).exists?
-        redirect_to posts_path, notice: 'Already liked!'
+      if params[:post_id]
+        if Like.where(user_id: current_user.id, likeable_type: "Post", likeable_id: params[:post_id]).exists?
+          redirect_to posts_path, notice: 'Already liked post!'
+        end
+      elsif params[:comment_id]
+        if Like.where(user_id: current_user.id, likeable_type: "Comment", likeable_id: params[:comment_id]).exists?
+          redirect_to posts_path, notice: 'Already liked comment!'
+        end
+      end
+
+    end
+
+    def not_liked?
+      if params[:post_id]
+        if !Like.where(user_id: current_user.id, likeable_type: "Post", likeable_id: params[:post_id]).exists?
+          redirect_to posts_path, notice: 'Already unliked comment!'
+        end
+      elsif params[:comment_id]
+        if !Like.where(user_id: current_user.id, likeable_type: "Comment", likeable_id: params[:comment_id]).exists?
+          redirect_to posts_path, notice: 'Already unliked comment!'
+        end
       end
     end
 
     def find_like
-      @like = Like.find_by(likeable_id: params[:post_id], likeable_type: "Post", user_id: current_user.id)
+      if params[:post_id]
+        @like = Like.find_by(likeable_id: params[:post_id], likeable_type: "Post", user_id: current_user.id)
+      elsif params[:comment_id]
+        @like = Like.find_by(likeable_id: params[:comment_id], likeable_type: "Comment", user_id: current_user.id)
+      end
     end
 
 end

@@ -6,8 +6,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    @post_likes = Like.like_posts
+    @posts = Post.all.order('updated_at DESC')
+
   end
 
   # GET /posts/1

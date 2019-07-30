@@ -5,6 +5,7 @@
 
         <%= render 'like_post', post: post %>
         <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+        <p><%= post.comments.count %> <%= (post.likes.count) == 1 ? 'Comment' : 'Comments'%></p>
         <%= link_to 'Show', post %>
         <% if post.user_id == current_user.id %>
           <%= link_to 'Edit', edit_post_path(post) %>
