@@ -1,8 +1,12 @@
-<%= form_for(post.likes.build, url: likes_path) do |f| %>
-  <%= hidden_field_tag :post_id, post.id %>
-  <%= f.submit "Like" %>
-<% end %>
 
-<%# if @post_likes.include? post.id  %>
-  <%# <p>I liked this!</p> %>
-<%# end %>
+
+<% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <p>UNLIKE</p>
+  <%= button_to "Unlike", url: like_path(pre_like.id), method: "delete" %>
+<% else %>
+  <%= form_for(post.likes.build, url: likes_path) do |f| %>
+    <%= hidden_field_tag :post_id, post.id %>
+    <%= f.submit "Like" %>
+  <% end %>
+<% end %>

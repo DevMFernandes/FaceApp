@@ -1,10 +1,7 @@
 class LikesController < ApplicationController
+  before_action :already_liked?, only: [:create]
 
   def create
-
-    if already_liked?
-      redirect_to posts_path, notice: 'already liked'
-    end
 
     # Like Post
     if params[:post_id]
@@ -27,7 +24,7 @@ class LikesController < ApplicationController
     else
       redirect_to posts_path, notice: 'Like failed'
     end
-    
+
   end
 
   def destroy
@@ -36,8 +33,9 @@ class LikesController < ApplicationController
   private
 
     def already_liked?
-      #Like.where(user_id: current_user.id, likeable_type: "Post", likeable_id: params[:likeable_id]).exists?
-      return true
+      if Like.where(user_id: current_user.id, likeable_type: "Post", likeable_id: params[:post_id]).exists?
+        redirect_to posts_path, notice: 'Already liked!'
+      end
     end
 
 end
