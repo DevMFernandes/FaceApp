@@ -1,5 +1,6 @@
 <h1>Post <%= @post.id %></h1>
 <p><%= @post.body %></p>
+<p><em>- <%= @post.user.name %></em></p>
 <%= link_to 'Edit', edit_post_path(@post) %>
 <%= link_to 'Delete post', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
 <br>
