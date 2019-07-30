@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order('updated_at DESC')
+
   end
 
   # GET /posts/1
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
 
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to posts_path, notice: 'Post was successfully created.'
     else
       render 'new'
     end

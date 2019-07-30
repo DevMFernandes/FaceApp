@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'comments/create'
-  get 'comments/destroy'
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root 'static_pages#home'
   get '/about', to: 'static_pages#about'
   resources :users, only: [:show, :index]
@@ -11,5 +10,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+
+  resources :likes, only: [:create, :destroy]
 
 end
