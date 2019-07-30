@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   before_action :already_liked?, only: [:create]
+  before_action :find_like, only: [:destroy]
 
   def create
 
@@ -28,6 +29,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    @like.destroy
+    redirect_to posts_path
   end
 
   private
@@ -36,6 +39,10 @@ class LikesController < ApplicationController
       if Like.where(user_id: current_user.id, likeable_type: "Post", likeable_id: params[:post_id]).exists?
         redirect_to posts_path, notice: 'Already liked!'
       end
+    end
+
+    def find_like
+      @like = Like.find_by(likeable_id: params[:post_id], likeable_type: "Post", user_id: current_user.id)
     end
 
 end
