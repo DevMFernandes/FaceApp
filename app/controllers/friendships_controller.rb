@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :set_friendship, only: [:destroy]
+  before_action :set_friendship, only: [:destroy, :update]
 
   def create
       @friendship = Friendship.new(friend_params)
@@ -16,6 +16,15 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
       flash[:success] = "Request Cancelled"
       redirect_to users_path
+  end
+
+  def update
+    @friendship.status = true
+    if @friendship.save
+      redirect_to users_path
+    else
+      redirect_to users_path, notice: 'Request failed'
+    end
   end
 
   private

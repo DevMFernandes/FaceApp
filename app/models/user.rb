@@ -13,16 +13,17 @@ class User < ApplicationRecord
 
    def confirmed_friends
      created_friendships = Array.new
-     created_friendships = friendships.select { |i| i.status == true }.map do |f|
+     created_friendships = friendships.select { |i| i.status == true}.map do |f|
        f.recipient
      end
 
      received_friendships = Array.new
      received_friendships = inverse_friendships.select { |i| i.status == true }.map do |f|
-      f.recipient
+      f.creator
      end
 
      (created_friendships + received_friendships)
+
     end
 
     def pending_friendships
@@ -32,9 +33,7 @@ class User < ApplicationRecord
 
     def pending_invites
       pending = Array.new
-      pending = inverse_friendships.select { |i| i.status == false }.map do |f|
-        f.creator
-      end
+      pending = inverse_friendships.select { |i| i.status == false }
     end
 
 end
