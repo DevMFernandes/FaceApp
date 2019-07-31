@@ -9,6 +9,7 @@ class LikesController < ApplicationController
     if params[:like_type] == "Post"
       @post = Post.find(params[:likeable_id])
       @like = @post.likes.build
+      #@like = Like.new(like_params)
 
       @like.user_id = current_user.id
       if @like.save
@@ -48,6 +49,9 @@ class LikesController < ApplicationController
   end
 
   private
+    def like_params
+      params.require(:like).permit(:likeable_id, :likeable_type)
+    end
 
     def like_exist?
       Like.where(user_id: current_user.id, likeable_type: params[:like_type], likeable_id: params[:likeable_id]).exists?

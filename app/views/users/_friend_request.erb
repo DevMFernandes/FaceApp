@@ -1,4 +1,5 @@
-<%= form_for(current_user.friendship.build, url: friendships_path) do |f| %>
-  <%= hidden_field_tag :recipient_id, user.id %>
+<%= form_for(current_user.friendships.build, url: friendships_path) do |f| %>
+  
+  <%= f.hidden_field :recipient_id, value: user.id %>
   <%= f.submit "Send Friend Request" %>
 <% end %>

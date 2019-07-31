@@ -1,11 +1,10 @@
 class FriendshipsController < ApplicationController
   def create
-    @friendship = Friendship.new
+      @friendship = Friendship.new(friend_params)
       @friendship.creator_id = current_user.id
-      @friendship.recipient_id = params[:recipient_id]
       @friendship.status = false
       if @friendship.save
-        redirect_to friendships_path
+        redirect_to users_path
       else
         redirect_to :root, notice: 'Request failed'
       end
@@ -13,4 +12,9 @@ class FriendshipsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def friend_params
+      params.require(:friendship).permit(:recipient_id)
+    end
 end
