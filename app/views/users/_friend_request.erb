@@ -1,27 +1,23 @@
 <% confirmed_friend = current_user.confirmed_friends.find { |friend| friend.id == user.id} %>
-<% pending_friend = current_user.pending_friends.find { |f| f.id == user.id } %>
+<% pending_friendship = current_user.pending_friendships.find { |f| f.recipient_id == user.id } %>
 <% pending_invite = current_user.pending_invites.find { |invite| invite.id == user.id } %>
 
 <% if confirmed_friend %>
+<p>Confirmed Friend</p>
 
 
   <% friendship = confirmed_friend.friendships.find{|f| f.recipient == current_user || f.creator == current_user} %>
 
   <%= form_for(friendship, url: friendship_path(friendship.id), method: :delete) do |f| %>
-    <%= f.hidden_field :likeable_id, value: post.id %>
-    <%= f.hidden_field :likeable_type, value: "Post" %>
     <%= f.submit "Unfriend" %>
   <% end %>
 
-<% elsif pending_friend %>
-<% friendship = confirmed_friend.friendships.find{|f| f.recipient == current_user || f.creator == current_user} %>
-  <%= form_for(friendship, url: friendships_path, method: :delete) do |f| %>
-    <%= f.hidden_field :likeable_id, value: post.id %>
-    <%= f.hidden_field :likeable_type, value: "Post" %>
-    <%= f.submit "Cancel invite" %>
-  <% end %>
+<% elsif pending_friendship %>
+<p>Pending Friend</p>
+<%= button_to 'Cancel Request', pending_friendship, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <% elsif pending_invite %>
+<p>Pending Invite</p>
 
   <%= form_for(current_user.friendships.build, url: friendships_path) do |f| %>
     <%= f.hidden_field :recipient_id, value: user.id %>
@@ -29,6 +25,7 @@
   <% end %>
 
 <% else %>
+<p>Send Request</p>
 
   <%= form_for(current_user.friendships.build, url: friendships_path) do |f| %>
     <%= f.hidden_field :recipient_id, value: user.id %>
