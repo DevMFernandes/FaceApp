@@ -22,11 +22,11 @@ class User < ApplicationRecord
        f.creator if f.status == true
      end
 
-     created_friendships + received_friendships
-     
+     all = created_friendships + received_friendships
+     all.compact
     end
 
-    def pending_friends 
+    def pending_friends
       pending = Array.new
       pending = friendships.map do |f|
         f.recipient if f.status == false
