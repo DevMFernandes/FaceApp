@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-
+  get 'friendships/create'
+  get 'friendships/destroy'
   devise_for :users
 
   root 'static_pages#home'
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-
   resources :likes, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
 end
