@@ -11,7 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-   def friends
+   def confirmed_friends
      created_friendships = Array.new
      created_friendships = friendships.map do |f|
        f.recipient if f.status == true
@@ -25,4 +25,19 @@ class User < ApplicationRecord
      created_friendships + received_friendships
      
     end
+
+    def pending_friends 
+      pending = Array.new
+      pending = friendships.map do |f|
+        f.recipient if f.status == false
+      end
+    end
+
+    def pending_invites
+      pending = Array.new
+      pending = inverse_friendships.map do |f|
+        f.creator if f.status == false
+      end
+    end
+
 end
