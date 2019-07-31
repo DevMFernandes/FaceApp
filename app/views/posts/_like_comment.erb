@@ -1,15 +1,19 @@
 <% pre_like = comment.likes.find { |like| like.user_id == current_user.id} %>
 <% if pre_like %>
   <%= form_for(pre_like, url: like_path(pre_like.id), method: :delete) do |f| %>
-    <%= hidden_field_tag :likeable_id, comment.id %>
-    <%= hidden_field_tag :like_type, "Comment" %>
+
+    <%= f.hidden_field :likeable_id, value: comment.id %>
+    <%= f.hidden_field :likeable_type, value: "Comment" %>
+
     <%= hidden_field_tag :post_id, params[:id] %>
     <%= f.submit "Unlike" %>
   <% end %>
 <% else %>
   <%= form_for(comment.likes.build, url: likes_path) do |f| %>
-    <%= hidden_field_tag :likeable_id, comment.id %>
-    <%= hidden_field_tag :like_type, "Comment" %>
+
+    <%= f.hidden_field :likeable_id, value: comment.id %>
+    <%= f.hidden_field :likeable_type, value: "Comment" %>
+
     <%= hidden_field_tag :post_id, params[:id] %>
     <%= f.submit "Like" %>
   <% end %>
