@@ -36,4 +36,7 @@ class User < ApplicationRecord
       pending = inverse_friendships.select { |i| i.status == false }
     end
 
+    def is_friend?(user)
+      confirmed_friends.include?(user)
+    end
 end

@@ -15,7 +15,7 @@
 
   <%= button_to 'Accept friendship', pending_invite, method: :put %>
 
-<% else %>
+<% elsif user != current_user %>
 
   <%= form_for(current_user.friendships.build, url: friendships_path) do |f| %>
     <%= f.hidden_field :recipient_id, value: user.id %>

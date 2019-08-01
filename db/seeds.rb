@@ -1,4 +1,4 @@
-User.create(:name => 'Eric', :email => 'eric@mail.com', :password => 'password', :location_id => rand(1..20))
+User.create(:name => 'Thor', :email => 'foo@bar.com', :password => 'password', :location_id => rand(1..20))
 
 30.times do
     User.create(:name => Faker::Name.name, :email => Faker::Internet.email, :password => 'password', :location_id => rand(1..30))
@@ -17,4 +17,8 @@ end
     (15..20).each do |i|
         Friendship.create(:creator_id => i,:recipient_id => j, :status => false)
     end
+end
+
+40.times do
+  Post.create(:body => Faker::Lorem.paragraph(sentence_count = 3), :user_id => rand(1..30))
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'friendships/create'
-  get 'friendships/destroy'
+
+
   devise_for :users
 
   root 'static_pages#home'
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  get 'allposts', to: 'posts#all'
 
   resources :likes, only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy, :update]

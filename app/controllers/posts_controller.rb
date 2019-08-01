@@ -6,9 +6,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order('updated_at DESC')
+    #@posts = Post.where("user_id.is_friend?(current_user) = ?", TRUE).order('updated_at DESC')
   end
 
+  def all
+    @posts = Post.all.order('updated_at DESC')
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show
