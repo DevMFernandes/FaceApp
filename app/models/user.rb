@@ -11,32 +11,35 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-   def confirmed_friends
-     created_friendships = Array.new
-     created_friendships = friendships.select { |i| i.status == true}.map do |f|
-       f.recipient
-     end
-
-     received_friendships = Array.new
-     received_friendships = inverse_friendships.select { |i| i.status == true }.map do |f|
-      f.creator
-     end
-
-     (created_friendships + received_friendships)
-
+  def confirmed_friends
+    created_friendships = Array.new
+    created_friendships = friendships.select { |i| i.status == true}.map do |f|
+      f.recipient
     end
 
-    def pending_friendships
-      pending = Array.new
-      pending = friendships.select { |i| i.status == false }
+    received_friendships = Array.new
+    received_friendships = inverse_friendships.select { |i| i.status == true }.map do |f|
+    f.creator
     end
 
-    def pending_invites
-      pending = Array.new
-      pending = inverse_friendships.select { |i| i.status == false }
-    end
+    (created_friendships + received_friendships)
+  end
 
-    def is_friend?(user)
-      confirmed_friends.include?(user)
-    end
+  def confirmed_friends_ids
+    confirmed_friends.map(&:id)
+  end
+
+  def pending_friendships
+    pending = Array.new
+    pending = friendships.select { |i| i.status == false }
+  end
+
+  def pending_invites
+    pending = Array.new
+    pending = inverse_friendships.select { |i| i.status == false }
+  end
+
+  def is_friend?(user)
+    confirmed_friends.include?(user)
+  end
 end

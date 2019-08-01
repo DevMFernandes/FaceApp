@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    #@posts = Post.where("user_id.is_friend?(current_user) = ?", TRUE).order('updated_at DESC')
+    @posts = Post.where("user_id IN (?)", current_user.confirmed_friends_ids).order('updated_at DESC')
   end
 
   def all
