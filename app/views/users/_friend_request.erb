@@ -19,7 +19,7 @@
 
   <%= form_for(current_user.friendships.build, url: friendships_path) do |f| %>
     <%= f.hidden_field :recipient_id, value: user.id %>
-    <%= f.submit "Send Friend Request" %>
+    <%= f.submit "Add friend" %>
   <% end %>
 
 <% end %>

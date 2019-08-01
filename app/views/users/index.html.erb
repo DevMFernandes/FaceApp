@@ -1,5 +1,7 @@
-<h1>User#index</h1>
+<h1>All users</h1>
 <% @users.each do |user| %>
   <p><%= user.name %>: <%= user.email %></p>
-  <p><%= render "friend_request", user: user %></p>
+  <%= render "friend_request", user: user %>
+  <br>
+  <hr>
 <% end %>

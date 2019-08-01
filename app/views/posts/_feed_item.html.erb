@@ -1,6 +1,7 @@
 <% posts.each do |post| %>
     <p><%= post.body %></p>
     <p><em>- <%= post.user.name %></em></p>
+    <p><%= render "friend_request_only", user: post.user %></p>
     <%= render 'like_post', post: post %>
     <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
     <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comment' : 'Comments'%></p>
