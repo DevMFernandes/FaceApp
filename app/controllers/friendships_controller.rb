@@ -1,6 +1,7 @@
 class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:destroy, :update]
-  # before_action :friend_exists?, only: [:create]
+  before_action :friend_exists?, only: [:create]
+  before_action :friendship_pending?, only: [:update]
 
   def index
     @friends = current_user.confirmed_friends
@@ -45,9 +46,15 @@ class FriendshipsController < ApplicationController
     end
 
     def friend_exists?
-      user = User.find_by(id: params[:recipient_id])
+      user = User.find_by(id: params[:friendship][:recipient_id])
       if current_user.confirmed_friends.include?(user)
-        redirect_to :root, notice: "Already a friend!"
+        redirect_to users_path, notice: "Already a friend!"
+      end
+    end
+
+    def friendship_pending?
+      if @friendship.status == true
+        redirect_to users_path, notice: "Already a friend!"
       end
     end
 
