@@ -1,0 +1,4 @@
+<% users.each do |user| %>
+  <p><%= link_to user.name, user %></p>
+  <%= render locals[:name], user: user %> 
+<% end %>

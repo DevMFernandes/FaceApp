@@ -1,7 +1,2 @@
 <h1>All users</h1>
-<% @users.each do |user| %>
-  <p><%= user.name %>: <%= user.email %></p>
-  <%= render "friend_request", user: user %>
-  <br>
-  <hr>
-<% end %>
+  <%= render "user_list", users: @users ,locals: { name: "friendships/friend_request" } %>
