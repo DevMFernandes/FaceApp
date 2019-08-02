@@ -25,6 +25,9 @@ class User < ApplicationRecord
     (created_friendships + received_friendships)
   end
 
+  def confirmed_friendships
+  end
+
   def confirmed_friends_ids
     confirmed_friends.map(&:id)
   end
