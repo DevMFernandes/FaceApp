@@ -2,6 +2,7 @@ class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:destroy, :update]
   before_action :friend_exists?, only: [:create]
   before_action :friendship_pending?, only: [:update]
+  before_action :authenticate_user!, only: [:index]
 
   def index
     @friends = current_user.confirmed_friends
@@ -21,7 +22,8 @@ class FriendshipsController < ApplicationController
   def destroy
     if @friendship.destroy
       flash[:success] = "Request Cancelled"
-      redirect_to users_path
+      #redirect_to users_path
+      redirect_back(fallback_location: root_path)
     else
       redirect_to :root, notice: "No friendship exists"
     end
