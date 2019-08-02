@@ -20,5 +20,7 @@ end
 end
 
 40.times do
-  Post.create(:body => Faker::Lorem.paragraph(sentence_count = 3), :user_id => rand(1..30))
+  Post.create(:body => Faker::ChuckNorris.fact, :user_id => rand(1..30))
+  Post.create(:body => Faker::Hacker.say_something_smart, :user_id => rand(1..30))
+  Post.create(:body => Faker::Hipster.paragraphs(paragraph_count = 3, supplemental = false), :user_id => rand(1..30))
 end
