@@ -25,7 +25,8 @@ class User < ApplicationRecord
     (created_friendships + received_friendships)
   end
 
-  def confirmed_friendships
+  def find_friendship(user)
+    friendship = self.friendships.find{|f| f.recipient == user} || self.inverse_friendships.find{|f| f.creator == user}
   end
 
   def confirmed_friends_ids
