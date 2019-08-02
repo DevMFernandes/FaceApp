@@ -13,7 +13,7 @@ class FriendshipsController < ApplicationController
       @friendship.creator_id = current_user.id
       @friendship.status = false
       if @friendship.save
-        redirect_to users_path
+        redirect_back(fallback_location: root_path)
       else
         redirect_to :root, notice: 'Request failed'
       end
@@ -22,7 +22,6 @@ class FriendshipsController < ApplicationController
   def destroy
     if @friendship.destroy
       flash[:success] = "Request Cancelled"
-      #redirect_to users_path
       redirect_back(fallback_location: root_path)
     else
       redirect_to :root, notice: "No friendship exists"

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notice: 'Post was successfully created.'
+      redirect_to :root, notice: 'Post was successfully created.'
     else
       render 'new'
     end
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   def destroy
       @post.destroy
       flash[:success] = "Post deleted"
-      redirect_to posts_path
+      redirect_to :root
   end
 
   private
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     end
 
     def correct_user
-      redirect_to posts_path, notice: 'Not your post!' if @post.user_id != current_user.id
+      redirect_to :root, notice: 'Not your post!' if @post.user_id != current_user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

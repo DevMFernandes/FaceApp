@@ -2,14 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root 'static_pages#home'
+  root 'posts#index'
   get '/about', to: 'static_pages#about'
   resources :users, only: [:show, :index]
 
   resources :posts do
     resources :comments
   end
-
+  
   get '/allposts', to: 'posts#all'
   get '/friends', to: 'friendships#index'
 
