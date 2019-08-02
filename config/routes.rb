@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   devise_for :users
 
   root 'static_pages#home'
@@ -12,10 +10,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  get 'allposts', to: 'posts#all'
-  #get '/friends', to: 'friendships#index'
+  get '/allposts', to: 'posts#all'
+  get '/friends', to: 'friendships#index'
 
   resources :likes, only: [:create, :destroy]
-  resources :friendships, only: [:create, :destroy, :update, :index]
+  resources :friendships, only: [:create, :destroy, :update]
 
 end

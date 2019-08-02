@@ -4,7 +4,7 @@
 
 <% if confirmed_friend %>
 
-  <% friendship = confirmed_friend.friendships.find{|f| f.recipient == current_user || f.creator == current_user} %>
+  <% friendship = current_user.friendships.find{|f| f.recipient == confirmed_friend || f.creator == confirmed_friend} %>
   <%= button_to 'Remove friend', friendship, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <% elsif pending_friendship %>
