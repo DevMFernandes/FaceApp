@@ -1,11 +1,16 @@
 class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:destroy, :update]
   before_action :friend_exists?, only: [:create]
+  before_action :friend_self?, only: [:create]
   before_action :friendship_pending?, only: [:update]
   before_action :authenticate_user!, only: [:index]
 
   def index
     @friends = current_user.confirmed_friends
+  end
+
+  def pending
+    @requests = current_user.pending_invites.map{ |f| f.creator}
   end
 
   def create
@@ -24,16 +29,16 @@ class FriendshipsController < ApplicationController
       flash[:success] = "Request Cancelled"
       redirect_back(fallback_location: root_path)
     else
-      redirect_to :root, notice: "No friendship exists"
+      redirect_back fallback_location: root_path, notice: "No friendship exists"
     end
   end
 
   def update
     @friendship.status = true
     if @friendship.save
-      redirect_to users_path
+      redirect_back(fallback_location: root_path)
     else
-      redirect_to users_path, notice: 'Request failed'
+      redirect_back fallback_location: root_path, notice: 'Request failed'
     end
   end
 
@@ -49,13 +54,20 @@ class FriendshipsController < ApplicationController
     def friend_exists?
       user = User.find_by(id: params[:friendship][:recipient_id])
       if current_user.confirmed_friends.include?(user)
-        redirect_to users_path, notice: "Already a friend!"
+        redirect_back fallback_location: root_path, notice: "Already a friend!"
+      end
+    end
+
+    def friend_self?
+      user = User.find_by(id: params[:friendship][:recipient_id])
+      if current_user == user
+        redirect_back fallback_location: root_path, notice: "Can't friend yourself!"
       end
     end
 
     def friendship_pending?
       if @friendship.status == true
-        redirect_to users_path, notice: "Already a friend!"
+        redirect_back fallback_location: root_path, notice: "Already a friend!"
       end
     end
 
