@@ -4,18 +4,17 @@ class FriendshipsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @post = posts(:one)
+    @f = friendships(:one)
     @user = users(:michael)
   end
 
-  test "should get create" do
-    get friendships_url
-    assert_response :success
-  end
 
-  test "should get destroy" do
-    get friendship_url
-    assert_response :success
+
+  test "should destroy friendship" do
+    sign_in @user
+    assert_difference('Friendship.count', -1) do
+      delete friendship_url(@f)
+    end
   end
 
 end

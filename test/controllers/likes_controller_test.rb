@@ -1,14 +1,18 @@
 require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
-    get likes_create_url
-    assert_response :success
+  include Devise::Test::IntegrationHelpers
+  setup do
+    @like = likes(:one)
+    @user = users(:michael)
   end
 
-  test "should get destroy" do
-    get likes_destroy_url
-    assert_response :success
-  end
 
+
+  test "should destroy like" do
+    sign_in @user
+    assert_difference('Like.count', -1) do
+      delete like_url(@like)
+    end
+  end
 end

@@ -7,14 +7,5 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @friendship = friendships(:one)
   end
 
-  test "should get create" do
-    get  post_comments_url(@friendship)
-    assert_response :success
-  end
-
-  # test "should get destroy" do
-  #   get post_comment_url
-  #   assert_response :success
-  # end
 
 end

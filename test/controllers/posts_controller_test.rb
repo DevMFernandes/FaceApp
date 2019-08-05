@@ -26,7 +26,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     post posts_url, params: { post: { body: "some text" } }
   end
 
-    assert_redirected_to post_url(Post.last)
+    assert_redirected_to root_url
   end
 
   test "should show post" do
@@ -41,11 +41,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should update post" do
-  #   sign_in @user
-  #   patch post_url(@post), params: { post: { body: "some other text" } }
-  #   assert_redirected_to post_url(@post)
-  # end
 
   test "should destroy post" do
     sign_in @user
