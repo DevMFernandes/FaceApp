@@ -4,8 +4,3 @@ one:
   creator: 1
   recipient: 2
   status: false
-
-two:
-  creator: two
-  recipient: three
-  status: false
