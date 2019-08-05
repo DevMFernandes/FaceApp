@@ -11,8 +11,6 @@
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
-  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>

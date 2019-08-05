@@ -1,18 +1,53 @@
+@import 'reset';
+
+// Color scheme
+$grey: rgb(117, 117, 117);
+$light-bg: #eee;
+
+h2 { font-size: 24px; }
+
 body{
   margin:0;
   padding:0;
 }
 
 header{
-  background:#eee;
+  background: $light-bg;
   padding:20px;
   a{
     color:black;
     margin-right:20px;
+    font-size: 25px;
+    }
+    a:hover{
+      color: $grey;
   }
 }
 
 .container{
   max-width:1000px;
   margin:0 auto;
+}
+
+form {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: $light-bg;
+  margin: 20px 0;
+  display: inline-block;
+  h2 {
+    font-weight: bold;
+  }
+  .field {
+    margin: 16px 0;
+  }
+  a{
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  input[type="submit" i]{
+    
+  }
 }
