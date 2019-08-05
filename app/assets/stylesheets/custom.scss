@@ -3,30 +3,49 @@
 // Color scheme
 $grey: rgb(117, 117, 117);
 $light-bg: #eee;
-
+$sans: sans-serif;
+$type-size: 14px;
 h2 { font-size: 24px; }
-
-body{
-  margin:0;
-  padding:0;
-}
-
-header{
-  background: $light-bg;
-  padding:20px;
-  a{
-    color:black;
-    margin-right:20px;
-    font-size: 25px;
-    }
-    a:hover{
-      color: $grey;
-  }
-}
-
 .container{
   max-width:1000px;
   margin:0 auto;
+}
+body{
+  margin:0;
+  padding:0;
+  font-family: $sans;
+  font-size: $type-size;
+}
+a{
+  color:black;
+}
+header{
+  background:white;
+  border-bottom:1px solid black;
+  padding:20px 0;
+  position: fixed;
+  width:100%;
+  nav{
+    a{
+      margin-right:20px;
+
+    }
+    a.current{
+      color:red;
+    }
+    a:hover{
+      color: $grey;
+    }
+
+    .right{
+      float:right;
+    }
+  }
+
+}
+
+main{
+  padding-top:100px;
 }
 
 form {
@@ -48,6 +67,6 @@ form {
     font-size: 16px;
   }
   input[type="submit" i]{
-    
+
   }
 }
