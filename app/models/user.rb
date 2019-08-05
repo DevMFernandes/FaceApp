@@ -5,12 +5,13 @@ class User < ApplicationRecord
   has_many :friendships, foreign_key: "creator_id"
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "recipient_id"
   belongs_to :location, required: false
+  validates :email, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, 
+         :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
-         
+
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -61,7 +62,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name   # assuming the user model has a name
-      # If you are using confirmable and the provider(s) you use validate emails, 
+      # If you are using confirmable and the provider(s) you use validate emails,
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
