@@ -1,14 +1,14 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
 
   setup do
-    @post = posts(:one)
-    @user = users(:michael)
+    @friendship = friendships(:one)
   end
 
   test "should get create" do
-    get  new_post_comment_url(@post)
+    get  post_comments_url(@friendship)
     assert_response :success
   end
 

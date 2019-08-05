@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
   before_action :friend_exists?, only: [:create]
   before_action :friend_self?, only: [:create]
   before_action :friendship_pending?, only: [:update]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!
 
   def index
     @friends = current_user.confirmed_friends

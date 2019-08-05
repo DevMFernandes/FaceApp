@@ -1,9 +1,11 @@
 michael:
+  id: 1
   name: Michael Example
   email: michael@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 archer:
+  id: 2
   name: Archer Example
   email: archer@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
