@@ -1,5 +1,2 @@
-<h3>Posts from all users</h3>
-<%= link_to 'New Post', new_post_path %>
-<br><br>
-<hr>
+<p class='new_post'><%= link_to 'New Post', new_post_path , class: 'btn btn-lg btn-dark'%></p>
 <%= render 'feed_item', posts: @posts %>

@@ -4,7 +4,7 @@
 
     <%= f.hidden_field :likeable_id, value: post.id %>
     <%= f.hidden_field :likeable_type, value: "Post" %>
-    <%= f.submit "Unlike", class: "btn btn-danger btn-sm"%>
+    <%= f.submit "Unlike (#{post.likes.count})", class: "btn btn-warning btn-sm"%>
   <% end %>
 
 <% else %>
@@ -12,6 +12,6 @@
 
     <%= f.hidden_field :likeable_id, value: post.id %>
     <%= f.hidden_field :likeable_type, value: "Post" %>
-    <%= f.submit "Like" , class: "btn btn-primary btn-sm" %>
+    <%= f.submit "Like (#{post.likes.count})" , class: "btn btn-primary btn-sm" %>
   <% end %>
 <% end %>

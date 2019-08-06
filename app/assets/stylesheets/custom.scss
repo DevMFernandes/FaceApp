@@ -49,7 +49,7 @@ header{
       &:hover{
         color: $grey;
       }
-    } 
+    }
   }
   .right{
     float:right;
@@ -84,18 +84,46 @@ main{
 }
 
 .gravatar {
+  border-radius:50%;
+}
+.new_post{
+  margin:20px 0 40px 0;
+  text-align: center;
+    a{
+      display: inline-block;
+      background:$light-green;
+      @extend %border-shadow;
+      border-radius: 0;
+    }
+}
+.posts{
+  .post{
+    background: $light-green;
+    @extend %border-shadow;
+    padding:20px;
+    display:flex;
+    margin-bottom:40px;
+    form{
+      margin:20px 0px;
+    }
+    .user_info{
+      flex:1;
+    }
+    .post_body{
+      flex:3;
+    }
 
+  }
 }
 
-.post{
-  display:flex;
-  .user_info{
-    flex:1;
-  }
-  .post_body{
-    flex:3;
-  }
-  margin-bottom:40px;
+.users{
+
+}
+.user{
+  background: $light-green;
+  @extend %border-shadow;
+  margin:30px 0;
+  padding:30px;
 }
 
 .registrations for {}
