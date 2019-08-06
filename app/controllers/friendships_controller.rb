@@ -5,8 +5,10 @@ class FriendshipsController < ApplicationController
   before_action :friendship_pending?, only: [:update]
   before_action :authenticate_user!
 
+  require 'will_paginate/array'
+
   def index
-    @friends = current_user.confirmed_friends
+    @friends = current_user.confirmed_friends.paginate(page: params[:page], per_page: 10)
   end
 
   def pending

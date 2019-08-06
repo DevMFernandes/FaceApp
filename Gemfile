@@ -39,6 +39,8 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+gem 'will_paginate',           '3.1.7'
+gem 'bootstrap-will_paginate', '1.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

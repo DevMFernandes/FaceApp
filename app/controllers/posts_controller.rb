@@ -3,14 +3,17 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  require 'will_paginate/array'
+
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where("user_id IN (?) OR user_id = ?", current_user.confirmed_friends_ids, current_user.id).order('updated_at DESC')
+    @posts = Post.where("user_id IN (?) OR user_id = ?", current_user.confirmed_friends_ids, current_user.id).order('updated_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def all
-    @posts = Post.all.order('updated_at DESC')
+    #@posts = Post.all.order('updated_at DESC')
+    @posts = Post.paginate(page: params[:page], per_page: 10).order('updated_at DESC')
   end
   # GET /posts/1
   # GET /posts/1.json
