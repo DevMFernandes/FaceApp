@@ -3,7 +3,8 @@
 <%= render 'friendships/friend_request' , user: @user %>
 <h4>Posts</h4>
 <% @posts.each do |post| %>
-  <p><%= post.body %></p>
-  <p><em><%= post.updated_at %></em></p>
-  <hr>
+  <div class="post">
+    <p><%= post.body %></p>
+    <p><em><%= post.updated_at.to_s(:short) %></em></p>
+  </div>
 <% end %>

@@ -29,3 +29,18 @@ end
   Post.create(:body => Faker::Hacker.say_something_smart, :user_id => rand(1..5))
   Post.create(:body => Faker::Hipster.paragraphs(paragraph_count = 3, supplemental = false)[0], :user_id => rand(1..5))
 end
+
+(1..40).each do |j|
+
+    5.times do
+        Comment.create(:body => Faker::Lorem.question(word_count = 4, supplemental = false, random_words_to_add = 6), :user_id => rand(1..40), :post_id => j)
+    end
+end
+
+(1..40).each do |j|
+    Like.create(:likeable_type => "Post", :likeable_id => rand(1..40), :user_id => j)
+end
+
+(1..40).each do |j|
+    Like.create(:likeable_type => "Comment", :likeable_id => rand(1..40), :user_id => j)
+end

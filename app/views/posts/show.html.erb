@@ -5,8 +5,11 @@
   <p><%= render "friendships/friend_request_only", user: @post.user %></p>
   <p>Last updated: <%= @post.updated_at.to_s(:short) %></p>
 
-  <%= link_to 'Edit', edit_post_path(@post) , class: "editable"%>
-  <%= link_to 'Delete post', @post, method: :delete, data: { confirm: 'Are you sure?' } , class: "editable"%>
+
+  <% if @post.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_post_path(@post), class: "editable" %>
+    <%= link_to 'Delete post', @post, method: :delete, data: { confirm: 'Are you sure?' } , class: "editable"%>
+  <% end %> 
 
 </div>
 <div class="show second">
