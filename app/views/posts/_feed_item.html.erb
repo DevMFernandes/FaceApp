@@ -1,6 +1,7 @@
 <% posts.each do |post| %>
     <p><%= post.body %></p>
-    <p><em>- <%= link_to post.user.name, post.user%></em></p>
+    <p><%= gravatar_for post.user %>
+    <em>- <%= link_to post.user.name, post.user%></em></p>
     <p><%= render "friendships/friend_request_only", user: post.user %></p>
     <%= render 'like_post', post: post %>
     <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>

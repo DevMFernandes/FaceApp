@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
   end
 
   def pending
-    @requests = current_user.pending_invites.map{ |f| f.creator}
+    @requests = current_user.pending_invites.map{ |f| f.creator}.paginate(page: params[:page], per_page: 10)
   end
 
   def create

@@ -1,5 +1,10 @@
 User.create(:name => 'Thor', :email => 'foo@bar.com', :password => 'password', :location_id => rand(1..20))
 
+5.times do |n|
+    User.create(:name => Faker::Name.name, :email => "example-#{n+1}@railstutorial.org", :password => 'password', :location_id => rand(1..30))
+    Location.create(:city => Faker::Address.city, :country => Faker::Address.country)
+end
+
 30.times do
     User.create(:name => Faker::Name.name, :email => Faker::Internet.email, :password => 'password', :location_id => rand(1..30))
     Location.create(:city => Faker::Address.city, :country => Faker::Address.country)
@@ -20,7 +25,7 @@ end
 end
 
 40.times do
-  Post.create(:body => Faker::ChuckNorris.fact, :user_id => rand(1..30))
-  Post.create(:body => Faker::Hacker.say_something_smart, :user_id => rand(1..30))
-  Post.create(:body => Faker::Hipster.paragraphs(paragraph_count = 3, supplemental = false), :user_id => rand(1..30))
+  Post.create(:body => Faker::ChuckNorris.fact, :user_id => rand(1..5))
+  Post.create(:body => Faker::Hacker.say_something_smart, :user_id => rand(1..5))
+  Post.create(:body => Faker::Hipster.paragraphs(paragraph_count = 3, supplemental = false), :user_id => rand(1..5))
 end
