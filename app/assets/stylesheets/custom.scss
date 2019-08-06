@@ -1,4 +1,6 @@
 @import 'reset';
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 // Color scheme
 $grey: rgb(117, 117, 117);
@@ -48,7 +50,7 @@ main{
   padding-top:100px;
 }
 
-form {
+.user-form {
   border: 1px solid black;
   border-radius: 10px;
   padding: 30px;
@@ -67,6 +69,6 @@ form {
     font-size: 16px;
   }
   input[type="submit" i]{
-
+    
   }
 }
