@@ -60,7 +60,7 @@ main{
   padding-top:100px;
 }
 
-.new_user {
+.new_user, .edit_user {
   border: none;
   @extend %border-shadow;
   padding: 30px;
@@ -77,9 +77,6 @@ main{
     display: inline-block;
     margin: 10px 0;
     font-size: 16px;
-  }
-  input[type="submit" i]{
-
   }
 }
 
