@@ -6,7 +6,7 @@
     <%= f.hidden_field :likeable_type, value: "Comment" %>
 
     <%= hidden_field_tag :post_id, params[:id] %>
-    <%= f.submit "Unlike" %>
+    <%= f.submit "Unlike (#{comment.likes.count})", class: "btn btn-warning btn-sm" %>
   <% end %>
 <% else %>
   <%= form_for(comment.likes.build, url: likes_path) do |f| %>
@@ -15,6 +15,6 @@
     <%= f.hidden_field :likeable_type, value: "Comment" %>
 
     <%= hidden_field_tag :post_id, params[:id] %>
-    <%= f.submit "Like" %>
+    <%= f.submit "Like (#{comment.likes.count})", class: "btn btn-primary btn-sm" %>
   <% end %>
 <% end %>

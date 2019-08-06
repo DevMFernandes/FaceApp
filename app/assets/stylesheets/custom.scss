@@ -109,13 +109,31 @@ main{
     .post_body{
       flex:3;
     }
-
+  }
+  .show{
+    background: $light-green;
+    @extend %border-shadow;
+    padding:20px;
+    &.second{
+      margin-top:40px;
+    }
+  }
+  .comment{
+    margin:15px 0;
+    padding:10px;
+    background: #f2fff3;
+    border-radius:5px;
+    border-bottom:1px solid black;
+    max-width:50%;
   }
 }
 
-.users{
-
+.editable{
+  color:$grey;
+  margin-right:15px;
 }
+.vert-space{margin-top:15px;}
+
 .user{
   background: $light-green;
   @extend %border-shadow;
