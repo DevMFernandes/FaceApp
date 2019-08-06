@@ -1,16 +1,22 @@
 <% posts.each do |post| %>
-    <p><%= post.body %></p>
-    <p><%= gravatar_for post.user %>
-    <em>- <%= link_to post.user.name, post.user%></em></p>
-    <p><%= render "friendships/friend_request_only", user: post.user %></p>
-    <%= render 'like_post', post: post %>
-    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-    <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comment' : 'Comments'%></p>
-    <%= link_to 'Show', post %>
-    <% if post.user_id == current_user.id %>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    <br><hr>
+  <div class="post">
+    <div class="user_info">
+      <p><%= gravatar_for post.user, size = 30 %>
+      <em><%= link_to post.user.name, post.user%></em></p>
+      <p><%= render "friendships/friend_request_only", user: post.user %></p>
+    </div>
+    <div class="post_body">
+      <p><%= post.body %></p>
+      <%= render 'like_post', post: post %>
+      <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+      <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comment' : 'Comments'%></p>
+      <%= link_to 'Show', post %>
+      <% if post.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+
+  </div>
 <% end %>
 <%= will_paginate posts %>

@@ -1,5 +1,5 @@
 <% users.each do |user| %>
-  <%= gravatar_for user %>
+  <%= gravatar_for user, size = 60 %>
   <p><%= link_to user.name, user %></p>
   <%= render locals[:name], user: user %>
   <hr>

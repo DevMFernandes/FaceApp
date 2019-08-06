@@ -4,13 +4,14 @@
 
     <%= f.hidden_field :likeable_id, value: post.id %>
     <%= f.hidden_field :likeable_type, value: "Post" %>
-    <%= f.submit "Unlike" %>
+    <%= f.submit "Unlike", class: "btn btn-danger btn-sm"%>
   <% end %>
+
 <% else %>
   <%= form_for(post.likes.build, url: likes_path) do |f| %>
 
     <%= f.hidden_field :likeable_id, value: post.id %>
     <%= f.hidden_field :likeable_type, value: "Post" %>
-    <%= f.submit "Like" %>
+    <%= f.submit "Like" , class: "btn btn-primary btn-sm" %>
   <% end %>
 <% end %>
