@@ -7,6 +7,12 @@ $grey: rgb(117, 117, 117);
 $light-bg: #eee;
 $sans: 'Ubuntu', sans-serif;
 $type-size: 14px;
+$bg-green: lightgreen;
+$light-green: mintcream;
+
+%border-shadow {
+  box-shadow: 2px 2px 3px rgb(25, 39, 25);
+}
 
 h2 { font-size: 24px; }
 .container{
@@ -18,44 +24,47 @@ body{
   padding:0;
   font-family: $sans;
   font-size: $type-size;
+  background-color: $bg-green;
 }
 a{
   color:black;
 }
 header{
-  background:white;
-  border-bottom:1px solid black;
+  background: $light-green;
+  @extend %border-shadow;
   padding:20px 0;
   position: fixed;
   width:100%;
   nav{
     a{
+      text-decoration: none;
       margin-right:20px;
+      padding: 16px;
 
-    }
-    a.current{
-      color:red;
-    }
-    a:hover{
-      color: $grey;
-    }
+      &.current{
+        color:green;
+        font-weight: bold;
+      }
 
-    .right{
-      float:right;
-    }
+      &:hover{
+        color: $grey;
+      }
+    } 
   }
-
+  .right{
+    float:right;
+  }
 }
 
 main{
   padding-top:100px;
 }
 
-.user-form {
-  border: 1px solid black;
-  border-radius: 10px;
+.new_user {
+  border: none;
+  @extend %border-shadow;
   padding: 30px;
-  background-color: $light-bg;
+  background-color: $light-green;
   margin: 20px 0;
   display: inline-block;
   h2 {
@@ -88,3 +97,5 @@ main{
   }
   margin-bottom:40px;
 }
+
+.registrations for {}
