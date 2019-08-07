@@ -10,7 +10,7 @@ class LikesController < ApplicationController
       @like = Like.new(like_params)
       @like.user_id = current_user.id
       if @like.save
-        redirect_to posts_path
+        redirect_back fallback_location: root_path
       else
         redirect_to posts_path, notice: 'Like failed'
       end
@@ -36,7 +36,7 @@ class LikesController < ApplicationController
   def destroy
     @like.destroy
     if params[:like][:likeable_type] == "Post"
-      redirect_to posts_path
+      redirect_back fallback_location: root_path
     elsif params[:like][:likeable_type] == "Comment"
       @post = Post.find(params[:post_id])
       redirect_to @post

@@ -3,6 +3,7 @@ class Friendship < ApplicationRecord
   belongs_to :recipient, class_name: "User"
   before_create :add_status
   before_create :friend_exists?
+  before_create :friend_yourself?
 
   private
 
@@ -18,6 +19,10 @@ class Friendship < ApplicationRecord
     if friend
        throw(:abort)
     end
+  end
+
+  def friend_yourself?
+    throw(:abort) if self.creator_id == self.recipient_id
   end
 
 end
