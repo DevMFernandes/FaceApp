@@ -18,7 +18,7 @@ class FriendshipsController < ApplicationController
   def create
       @friendship = Friendship.new(friend_params)
       @friendship.creator_id = current_user.id
-      @friendship.status = false
+      
       if @friendship.save
         redirect_back(fallback_location: root_path)
       else
