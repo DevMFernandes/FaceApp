@@ -22,6 +22,6 @@
 - Explore is collection of all users' posts
 
 
-[Demo app](https://heroku.com)
+[Demo app](https://pure-castle-56071.herokuapp.com/)
 
 Built by [Marcos](https://github.com/DevMFernandes) and [Eric](https://github.com/eri-b/)
