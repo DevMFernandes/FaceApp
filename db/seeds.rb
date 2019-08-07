@@ -12,14 +12,14 @@ end
 
 (1..15).each do |j|
 
-    (1..10).each do |i|
-        Friendship.create(:creator_id => j,:recipient_id => i+1, :status => true)
+    (2..10).each do |i|
+        Friendship.create(:creator_id => j,:recipient_id => i, :status => true)
     end
 end
 
 (1..15).each do |j|
 
-    (15..20).each do |i|
+    (16..20).each do |i|
         Friendship.create(:creator_id => i,:recipient_id => j, :status => false)
     end
 end

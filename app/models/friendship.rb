@@ -1,8 +1,8 @@
 class Friendship < ApplicationRecord
   belongs_to :creator, class_name: "User"
   belongs_to :recipient, class_name: "User"
-  before_save :add_status
-  before_save :friend_exists?
+  before_create :add_status
+  before_create :friend_exists?
 
   private
 
