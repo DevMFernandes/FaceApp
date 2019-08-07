@@ -38,7 +38,6 @@ header{
   nav{
     a{
       text-decoration: none;
-      margin-right:20px;
       padding: 16px;
 
       &.current{
@@ -139,8 +138,15 @@ main{
     padding:20px;
     margin-bottom:40px;
   }
+
 }
 
+.user-list-item{
+  margin-bottom:25px;
+  a{
+    margin-left:20px;
+  }
+}
 .editable{
   color:$grey;
   margin-right:15px;
@@ -170,7 +176,7 @@ main{
     padding-top:240px;
   }
   .edit_user {
-  
+
     textarea {
       width: 350px;
       height: 100px;

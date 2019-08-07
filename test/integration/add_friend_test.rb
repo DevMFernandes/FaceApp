@@ -9,9 +9,12 @@ class AddFriendTest < ActionDispatch::IntegrationTest
   end
 
   test "add friend" do
-    assert @user.pending_friendships.empty?
-    post friendships_path, params: { friendship: { recipient_id: 2, creator_id: @user.id} }
-    assert_not @user.pending_friendships.empty?
+    assert @user.friendships.empty?
+    
+    assert_difference '@user.friendships.count', 1 do
+      post friendships_path, params: { friendship: { recipient_id: 2, creator_id: @user.id, status: false} }
+    end
+
   end
 
 end
