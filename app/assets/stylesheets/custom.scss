@@ -124,7 +124,7 @@ main{
     background: #f2fff3;
     border-radius:5px;
     border-bottom:1px solid black;
-    max-width:50%;
+    max-width:500px;
   }
 }
 
@@ -150,4 +150,19 @@ main{
   padding:30px;
 }
 
-.registrations for {}
+@media screen and (max-width:1000px){
+  header{
+    nav{
+      a{
+        display:block;
+        padding:3px;
+      }
+      .right{
+        float:none;
+      }
+    }
+  }
+main{
+  padding-top:240px;
+}
+}
