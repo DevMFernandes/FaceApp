@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
-  
+
   setup do
     @post = posts(:one)
     @user = users(:michael)
@@ -11,8 +11,8 @@ class CommentTest < ActiveSupport::TestCase
     @comment3 = comments(:three)
     @comment4 = comments(:four)
   end
-  
-  test "user comment should count to user comments" do
+
+  test "user can create comments" do
     post = Post.create(id: 1, body: "somepost", user_id: 1)
     assert_difference '@user.comments.count', 1 do
       @user.comments.create!(body: "Lorem ipsum", post_id: 1)
@@ -36,5 +36,7 @@ class CommentTest < ActiveSupport::TestCase
   test "comment id should be present" do
     assert_not @comment3.valid?
   end
+
+
 
 end

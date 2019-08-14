@@ -8,8 +8,8 @@ class PostTest < ActiveSupport::TestCase
     @post = @user.posts.build(body: "Lorem ipsum")
     @post2 = posts(:one)
   end
-  
-  test "user post should count to user posts" do
+
+  test "user can create posts" do
     user = User.create(email: "michdsfsdfdsael@example.com", name: "michael", password: "foobar", password_confirmation: "foobar")
     assert_difference 'user.posts.count', 1 do
       user.posts.create!(body: "Lorem ipsum")
@@ -31,5 +31,7 @@ class PostTest < ActiveSupport::TestCase
     post = Post.new(user_id: 1)
     assert_not post.save
   end
+
+
 
 end
