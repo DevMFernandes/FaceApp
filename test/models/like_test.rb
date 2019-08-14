@@ -27,4 +27,5 @@ class LikeTest < ActiveSupport::TestCase
       like.destroy
     end
   end
+
 end

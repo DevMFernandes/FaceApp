@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :friendships, foreign_key: "creator_id"
-  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "recipient_id"
+  has_many :friendships, foreign_key: "creator_id", dependent: :destroy
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "recipient_id", dependent: :destroy
   belongs_to :location, required: false
   validates :email, uniqueness: true
   # Include default devise modules. Others available are:
