@@ -2,10 +2,20 @@
 
 one:
   body: MyText
-  post: 
-  user: 
+  post: 1
+  user: 1
 
 two:
   body: MyText
-  post: 
+  post: 1
   user: 
+
+three:
+  body: MyText
+  post: 
+  user: 1
+
+four:
+  body: 
+  post: 1
+  user: 1
