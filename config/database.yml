@@ -25,9 +25,9 @@ default: &default
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: <%= ENV['SQL_USERNAME'] %>
+  # username: <%= ENV['SQL_USERNAME'] %>
   # The password associated with the postgres role (username).
-  password: <%= ENV['SQL_PASSWORD'] %>
+  # password: <%= ENV['SQL_PASSWORD'] %>
 
 development:
   <<: *default
@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: FaceApp_production
-  username: FaceApp
-  password: <%= ENV['SQL_USERNAME'] %>
+  username: <%= ENV['SQL_USERNAME'] %>
+  password: <%= ENV['SQL_PASSWORD'] %>
