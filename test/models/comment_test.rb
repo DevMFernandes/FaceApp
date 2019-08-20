@@ -37,6 +37,9 @@ class CommentTest < ActiveSupport::TestCase
     assert_not @comment3.valid?
   end
 
-
+  test "comment should not be empty" do
+    comment = Comment.new(user_id: 1, post_id: 1)
+    assert_not comment.save
+  end
 
 end

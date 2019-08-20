@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :friendships, foreign_key: "creator_id", dependent: :destroy
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "recipient_id", dependent: :destroy
   belongs_to :location, required: false
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
+  validates :name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
