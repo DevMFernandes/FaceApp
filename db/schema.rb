@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_180954) do
+ActiveRecord::Schema.define(version: 2019_08_02_200627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2019_07_29_180954) do
     t.bigint "user_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "creator_id"
+    t.bigint "recipient_id"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_friendships_on_creator_id"
+    t.index ["recipient_id"], name: "index_friendships_on_recipient_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -60,9 +70,13 @@ ActiveRecord::Schema.define(version: 2019_07_29_180954) do
     t.datetime "updated_at", null: false
     t.bigint "location_id"
     t.string "name"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "friendships", "users", column: "creator_id"
+  add_foreign_key "friendships", "users", column: "recipient_id"
 end

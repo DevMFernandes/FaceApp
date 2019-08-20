@@ -1,0 +1,21 @@
+<% posts.each do |post| %>
+  <div class="post">
+    <div class="user_info">
+      <p><%= gravatar_for post.user, size = 30 %>
+      <em><%= link_to post.user.name, post.user%></em></p>
+      <p><%= render "friendships/friend_request_only", user: post.user %></p>
+      <p><%= post.updated_at.to_s(:short) %></p>
+    </div>
+    <div class="post_body">
+      <p><%= post.body %></p>
+      <%= render 'like_post', post: post %>
+      <p><%= link_to "Comments (#{post.comments.count})", post %></p>
+      <% if post.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_post_path(post), class: "editable" %>
+        <%= link_to 'Delete post', post, method: :delete, data: { confirm: 'Are you sure?' } , class: "editable"%>
+      <% end %>
+    </div>
+
+  </div>
+<% end %>
+<%= will_paginate posts %>

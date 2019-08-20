@@ -9,6 +9,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "users path okay" do
+    sign_in @user
     get users_path
     assert_response :success
   end

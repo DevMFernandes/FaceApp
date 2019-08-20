@@ -3,13 +3,18 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  require 'will_paginate/array'
+
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order('updated_at DESC')
-
+    @posts = Post.where("user_id IN (?) OR user_id = ?", current_user.confirmed_friends_ids, current_user.id).order('updated_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
+  def all
+    #@posts = Post.all.order('updated_at DESC')
+    @posts = Post.paginate(page: params[:page], per_page: 10).order('updated_at DESC')
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -31,7 +36,7 @@ class PostsController < ApplicationController
 
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notice: 'Post was successfully created.'
+      redirect_to :root, notice: 'Post was successfully created.'
     else
       render 'new'
     end
@@ -63,7 +68,7 @@ class PostsController < ApplicationController
     end
 
     def correct_user
-      redirect_to posts_path, notice: 'Not your post!' if @post.user_id != current_user.id
+      redirect_to :root, notice: 'Not your post!' if @post.user_id != current_user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

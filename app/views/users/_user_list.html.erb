@@ -1,0 +1,10 @@
+<% users.each do |user| %>
+  <div class="user">
+  <p class="user-list-item">
+    <%= gravatar_for user, size = 60 %>
+    <%= link_to user.name, user %>
+  </p>
+  <%= render locals[:name], user: user %>
+  </div>
+<% end %>
+<%= will_paginate users %>

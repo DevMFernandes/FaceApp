@@ -1,17 +1,3 @@
-<h1>Posts</h1>
-<%= link_to 'New Post', new_post_path %>
-<br><br>
-<hr>
-<% @posts.each do |post| %>
-    <p><%= post.body %></p>
-    <p><em>- <%= post.user.name %></em></p>
-    <%= render 'like_post', post: post %>
-    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-    <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comment' : 'Comments'%></p>
-    <%= link_to 'Show', post %>
-    <% if post.user_id == current_user.id %>
-      <%= link_to 'Edit', edit_post_path(post) %>
-      <%= link_to 'Delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    <br><hr>
-<% end %>
+<p class='new_post'><%= link_to 'New Post', new_post_path , class: 'btn btn-lg btn-dark'%></p>
+
+<%= render 'feed_item', posts: @posts %>

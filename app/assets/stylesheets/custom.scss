@@ -1,0 +1,185 @@
+@import 'reset';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Color scheme
+$grey: rgb(117, 117, 117);
+$light-bg: #eee;
+$sans: 'Ubuntu', sans-serif;
+$type-size: 14px;
+$bg-green: lightgreen;
+$light-green: mintcream;
+
+%border-shadow {
+  box-shadow: 2px 2px 3px rgb(25, 39, 25);
+}
+
+h2 { font-size: 24px; }
+.container{
+  max-width:1000px;
+  margin:0 auto;
+}
+body{
+  margin:0;
+  padding:0;
+  font-family: $sans;
+  font-size: $type-size;
+  background-color: $bg-green;
+}
+a{
+  color:black;
+}
+header{
+  background: $light-green;
+  @extend %border-shadow;
+  padding:20px 0;
+  position: fixed;
+  width:100%;
+  nav{
+    a{
+      text-decoration: none;
+      padding: 16px;
+
+      &.current{
+        color:green;
+        font-weight: bold;
+      }
+
+      &:hover{
+        color: $grey;
+      }
+    }
+  }
+  .right{
+    float:right;
+  }
+}
+
+main{
+  padding-top:100px;
+}
+
+.new_user, .edit_user {
+  border: none;
+  @extend %border-shadow;
+  padding: 30px;
+  background-color: $light-green;
+  margin: 20px 0;
+  display: inline-block;
+  h2 {
+    font-weight: bold;
+  }
+  .field {
+    margin: 16px 0;
+  }
+  a{
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  textarea {
+    width: 500px;
+    height: 100px;
+  }
+}
+
+.gravatar {
+  border-radius:50%;
+}
+.new_post{
+  margin:20px 0 40px 0;
+  text-align: center;
+    a{
+      display: inline-block;
+      background:$light-green;
+      @extend %border-shadow;
+      border-radius: 0;
+    }
+}
+.posts{
+  .post{
+    background: $light-green;
+    @extend %border-shadow;
+    padding:20px;
+    display:flex;
+    margin-bottom:40px;
+    form{
+      margin:20px 0px;
+    }
+    .user_info{
+      flex:1;
+    }
+    .post_body{
+      flex:3;
+    }
+  }
+  .show{
+    background: $light-green;
+    @extend %border-shadow;
+    padding:20px;
+    &.second{
+      margin-top:40px;
+    }
+  }
+  .comment{
+    margin:15px 0;
+    padding:10px;
+    background: #f2fff3;
+    border-radius:5px;
+    border-bottom:1px solid black;
+    max-width:500px;
+  }
+}
+
+.users {
+  .post{
+    background: $light-green;
+    @extend %border-shadow;
+    padding:20px;
+    margin-bottom:40px;
+  }
+
+}
+
+.user-list-item{
+  margin-bottom:25px;
+  a{
+    margin-left:20px;
+  }
+}
+.editable{
+  color:$grey;
+  margin-right:15px;
+}
+.vert-space{margin-top:15px;}
+
+.user{
+  background: $light-green;
+  @extend %border-shadow;
+  margin:30px 0;
+  padding:30px;
+}
+
+@media screen and (max-width:1000px){
+  header{
+    nav{
+      a{
+        display:block;
+        padding:3px;
+      }
+      .right{
+        float:none;
+      }
+    }
+  }
+  main{
+    padding-top:240px;
+  }
+  .edit_user {
+
+    textarea {
+      width: 350px;
+      height: 100px;
+    }
+  }
+}
