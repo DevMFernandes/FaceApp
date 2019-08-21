@@ -1,0 +1,17 @@
+<% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= form_for(pre_like, url: like_path(pre_like.id), method: :delete) do |f| %>
+
+    <%= f.hidden_field :likeable_id, value: post.id %>
+    <%= f.hidden_field :likeable_type, value: "Post" %>
+    <%= f.submit "Unlike (#{post.likes.count})", class: "btn btn-warning btn-sm"%>
+  <% end %>
+
+<% else %>
+  <%= form_for(post.likes.build, url: likes_path) do |f| %>
+
+    <%= f.hidden_field :likeable_id, value: post.id %>
+    <%= f.hidden_field :likeable_type, value: "Post" %>
+    <%= f.submit "Like (#{post.likes.count})" , class: "btn btn-primary btn-sm" %>
+  <% end %>
+<% end %>

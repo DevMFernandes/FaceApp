@@ -1,0 +1,25 @@
+<% confirmed_friend = current_user.confirmed_friends.find { |friend| friend.id == user.id} %>
+<% pending_friendship = current_user.pending_friendships.find { |f| f.recipient_id == user.id } %>
+<% pending_invite = current_user.pending_invites.find { |invite| invite.creator_id == user.id } %>
+
+<% if confirmed_friend %>
+
+  <% friendship = current_user.find_friendship(confirmed_friend) %>
+  <%= button_to 'Remove friend', friendship, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } %>
+
+<% elsif pending_friendship %>
+
+  <%= button_to 'Cancel Request', pending_friendship, method: :delete, class: "btn btn-sm btn-warning", data: { confirm: 'Are you sure?' } %>
+
+<% elsif pending_invite %>
+
+  <%= button_to 'Accept friendship', pending_invite, class: "btn btn-sm btn-success", method: :put %>
+
+<% elsif user != current_user %>
+
+  <%= form_for(current_user.friendships.build, url: friendships_path) do |f| %>
+    <%= f.hidden_field :recipient_id, value: user.id %>
+    <%= f.submit "Add friend", class: "btn btn-sm btn-success" %>
+  <% end %>
+
+<% end %>

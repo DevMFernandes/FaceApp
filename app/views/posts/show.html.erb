@@ -1,0 +1,46 @@
+<div class="show">
+  <p><%= @post.body %></p>
+  <p><%= gravatar_for @post.user, size = 30 %>
+  <em><%= link_to @post.user.name, @post.user%></em></p>
+  <p><%= render "friendships/friend_request_only", user: @post.user %></p>
+  <p>Last updated: <%= @post.updated_at.to_s(:short) %></p>
+
+
+  <% if @post.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_post_path(@post), class: "editable" %>
+    <%= link_to 'Delete post', @post, method: :delete, data: { confirm: 'Are you sure?' } , class: "editable"%>
+  <% end %>
+
+</div>
+<div class="show second">
+
+<h4>Comments</h4>
+
+<%= form_with(model: @comment, url: post_comments_path(@post), local: true) do |form| %>
+
+    <%= form.text_area :body ,cols: 50, rows: 5%> <br> <br>
+
+    <%= hidden_field_tag :id, @post.id %>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-sm btn-success" %>
+    </div>
+  <% end %>
+
+<% @post.comments.order('updated_at DESC').each do |comment| %>
+  <% unless comment.id.nil? %>
+    <div class="comment">
+      <p><%= comment.body %></p>
+      <p>- <em><%= link_to comment.user.name, comment.user%></em></p>
+
+      <%= render 'like_comment', comment: comment %>
+
+      <% if comment.user_id == current_user.id %>
+      <p class="vert-space"><%= link_to 'Delete comment', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+</div>
